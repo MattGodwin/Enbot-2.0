@@ -4,7 +4,7 @@ from discord.ext import commands
 
 bot = commands.Bot(command_prefix='.', help_command=None, intents=discord.Intents.all())
 client = discord.Client()
-initial_extensions = ['cogs.greetings', 'cogs.utility', 'cogs.games']
+initial_extensions = ['cogs.greetings', 'cogs.utility', 'cogs.games', 'cogs.economy']
 
 if __name__ == '__main__':
     for extension in initial_extensions:

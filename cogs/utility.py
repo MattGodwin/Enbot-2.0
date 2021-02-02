@@ -15,6 +15,8 @@ class Help(commands.Cog):
         embed.add_field(name=".ping", value="Checks if i am responding.", inline=False)
         embed.add_field(name=".hello", value="Say hello to me.", inline=False)
         embed.add_field(name=".rps", value="Play rock, paper, scissors.", inline=False)
+        embed.add_field(name=".bal", value="Checks your balance.", inline=False)
+        embed.add_field(name=".beg", value="Begs for money.", inline=False)
         embed.set_footer(text="Bot made by @Enmatt#8829.")
         await ctx.channel.send(embed=embed)
 
