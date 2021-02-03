@@ -53,7 +53,7 @@ class Economy(commands.Cog):
             id_ = baltop[amt]
             member = self.bot.get_user(id_)
             name = member.name
-            em.add_field(name= f"{i}. {name}", value= f"`£{amt}`", inline=False)
+            em.add_field(name= f"{i}. {name}", value= f"`£{amt/2}`", inline=False) #IDK why we /2 but it doesn't work without so yeh lol
             if i == x:
                 break
             else:
