@@ -11,7 +11,7 @@ class Economy(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(aliases=["balance"])
     async def bal(self, ctx):
         open_account(ctx.author)
         user = ctx.author
@@ -22,6 +22,42 @@ class Economy(commands.Cog):
         em = discord.Embed(title=f"{ctx.author.name}'s balance", color=0xFFB6C1)
         em.add_field(name="Wallet Balance", value=wallet_amt)
         await ctx.send(embed=em)
+
+    @commands.command(aliases=["balancetop"])
+    #Balance Top Command
+    async  def baltop(self, ctx, x = 10):
+
+        users = get_bank_data()
+        baltop = {}
+        total = []
+
+        #Cycles through all balances
+        for user in users:
+            name = int(user)
+            total_amount = users[user]["bank"] + users[user]["bank"]
+            baltop[total_amount] = name
+            total.append(total_amount)
+
+        #Sorts balances from largest to smallest
+        total = sorted(total, reverse=True)
+
+        #Starts embed
+        em = discord.Embed(title=f"Top {x} Richest People", description="Do .bal to find out how much money you have!", color=0xFFB6C1)
+
+        #Cycles through x users and adds feild to the embed
+        i = 1
+        for amt in total:
+            id_ = baltop[amt]
+            member = self.bot.get_user(id_)
+            name = member.name
+            em.add_field(name= f"{i}. {name}", value= f"{amt}", inline=False)
+            if i == x:
+                break
+            else:
+                i += 1
+
+        #Sends Embed
+        await ctx.send(embed = em)
 
     @commands.command()
     @commands.cooldown(1, 120, commands.BucketType.user)

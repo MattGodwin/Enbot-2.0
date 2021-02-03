@@ -62,5 +62,6 @@ class RPS(commands.Cog):
             await lol.edit(embed=embed)
 
 
+
 def setup(bot):
     bot.add_cog(RPS(bot))
