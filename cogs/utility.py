@@ -7,18 +7,41 @@ class Help(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def help(self, ctx):
-        embed = discord.Embed(title="Sombebody needs help!", description="Here is a list of all my commands!",
-                              color=0xFFB6C1)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
-        embed.add_field(name=".help", value="Shows a list of my commands.", inline=False)
-        embed.add_field(name=".ping", value="Checks if i am responding.", inline=False)
-        embed.add_field(name=".hello", value="Say hello to me.", inline=False)
-        embed.add_field(name=".rps", value="Play rock, paper, scissors.", inline=False)
-        embed.add_field(name=".bal", value="Checks your balance.", inline=False)
-        embed.add_field(name=".beg", value="Begs for money.", inline=False)
-        embed.set_footer(text="Bot made by @Enmatt#8829.")
-        await ctx.channel.send(embed=embed)
+    async def help(self, ctx, arg=None):
+
+        if arg == None:
+            embed = discord.Embed(title="Sombebody needs help!", description="Here is a list of all my commands!",color=0xFFB6C1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
+            embed.add_field(name=".help", value="Shows a list of commands.", inline=False)
+            embed.add_field(name=".help utility", value="Shows a list of Utility commands ", inline=False)
+            embed.add_field(name=".help fun", value="Shows a list of fun commands", inline=False)
+            embed.add_field(name=".help eco", value="shows a list of economy commands.", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await ctx.channel.send(embed=embed)
+        elif arg == "utility":
+            embed = discord.Embed(title="Sombebody needs help with utility commands!", description="Here is a list of all my utility commands!",color=0xFFB6C1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
+            embed.add_field(name=".help", value="Shows a list of my commands.", inline=False)
+            embed.add_field(name=".ping", value="Checks if I am responding", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await ctx.channel.send(embed=embed)
+        elif arg == "fun":
+            embed = discord.Embed(title="Sombebody needs help with fun commands!", description="Here is a list of all my fun commands!",color=0xFFB6C1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
+            embed.add_field(name=".rps", value="Play Rock Paper Scissors.", inline=False)
+            embed.add_field(name=".hello", value="Say hello!", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await ctx.channel.send(embed=embed)
+        elif arg == "eco":
+            embed = discord.Embed(title="Sombebody needs help with economy commands!", description="Here is a list of all my economy commands!",color=0xFFB6C1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
+            embed.add_field(name=".bal", value="Checks your balance.", inline=False)
+            embed.add_field(name=".baltop", value="Shows the balance leaderboard.", inline=False)
+            embed.add_field(name=".beg", value="Beg for money.", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await ctx.channel.send(embed=embed)
+
+
 
 
 class Ping(commands.Cog):

@@ -18,8 +18,8 @@ class Greetings(commands.Cog):
 
         channel = member.guild.system_channel
         if channel is not None:
-            embed = discord.Embed(title='Welcome @{0}.'.format(member), description="Hope that you have a good time!",
-                                  color=0xFFB6C1)
+            embed = discord.Embed(title='Welcome @{0}.'.format(member), description="Hope that you have a good time!",color=0xFFB6C1)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
             await channel.send(embed=embed)
 
     @commands.command()

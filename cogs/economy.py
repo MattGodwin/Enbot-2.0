@@ -20,7 +20,8 @@ class Economy(commands.Cog):
         wallet_amt = users[str(user.id)]["bank"]
 
         em = discord.Embed(title=f"{ctx.author.name}'s balance", color=0xFFB6C1)
-        em.add_field(name="Wallet Balance", value=wallet_amt)
+        em.add_field(name="Wallet Balance", value=f"`£{wallet_amt}`")
+        em.set_footer(text="Bot made by @Enmatt#8829.")
         await ctx.send(embed=em)
 
     @commands.command(aliases=["balancetop"])
@@ -50,13 +51,14 @@ class Economy(commands.Cog):
             id_ = baltop[amt]
             member = self.bot.get_user(id_)
             name = member.name
-            em.add_field(name= f"{i}. {name}", value= f"{amt}", inline=False)
+            em.add_field(name= f"{i}. {name}", value= f"`£{amt}`", inline=False)
             if i == x:
                 break
             else:
                 i += 1
 
         #Sends Embed
+        em.set_footer(text="Bot made by @Enmatt#8829.")
         await ctx.send(embed = em)
 
     @commands.command()
@@ -69,15 +71,15 @@ class Economy(commands.Cog):
 
         earnings = random.randrange(101)
 
-        answer = [f"Steve gave you {earnings} coins!",
-                                     f"YOUR MUM gave you {earnings} coins!",
-                                     f"Dr. Phill gave you {earnings} coins!",
-                                     f"Belle Delphine gave you {earnings} coins!",
-                                     f"Charli D'amelio gave you {earnings} coins!",
-                                     f"Big Chungus gave you {earnings} coins!",
-                                     f"shitass gave you {earnings} coins!",
-                                     f"Enmatt gave you {earnings} coins!",
-                                     f"Someone gave you {earnings} coins!"]
+        answer = [f"Steve gave you `£{earnings}` coins!",
+                                     f"YOUR MUM gave you `£{earnings}`!",
+                                     f"Dr. Phill gave you `£{earnings}`!",
+                                     f"Belle Delphine gave you `£{earnings}`!",
+                                     f"Charli D'amelio gave you `£{earnings}`!",
+                                     f"Big Chungus gave you `£{earnings}`!",
+                                     f"shitass gave you `£{earnings}`!",
+                                     f"Enmatt gave you `£{earnings}!`",
+                                     f"Someone gave you `£{earnings}!`"]
 
         await ctx.send(random.choice(answer))
 
