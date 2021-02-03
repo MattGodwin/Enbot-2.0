@@ -15,4 +15,4 @@ async def on_ready():
     print('Online')
     await bot.change_presence(activity=discord.Game(name='Pycharm'))
 
-bot.run('NzU2MTk3NjQ3OTA3NTUzMzEw.X2OV8A.y3djfprgRq5RsNIsyqE0dqk60sQ')
+bot.run('Your Key Here')
