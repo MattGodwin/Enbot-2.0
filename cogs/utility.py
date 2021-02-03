@@ -38,6 +38,7 @@ class Help(commands.Cog):
             embed.add_field(name=".bal", value="Checks your balance.", inline=False)
             embed.add_field(name=".baltop", value="Shows the balance leaderboard.", inline=False)
             embed.add_field(name=".beg", value="Beg for money.", inline=False)
+            embed.add_field(name=".slots", value="Play the slot machine.", inline=False)
             embed.set_footer(text="Bot made by @Enmatt#8829.")
             await ctx.channel.send(embed=embed)
 

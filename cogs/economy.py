@@ -3,6 +3,7 @@ from discord.ext import  commands
 import random
 import os
 import json
+import time
 
 os.chdir("C:\\Users\\matth\\PycharmProjects\\Enbot2.0")
 
@@ -12,6 +13,7 @@ class Economy(commands.Cog):
         self.bot = bot
 
     @commands.command(aliases=["balance"])
+    #Gets user's balance
     async def bal(self, ctx):
         open_account(ctx.author)
         user = ctx.author
@@ -89,12 +91,77 @@ class Economy(commands.Cog):
             users = json.dump(users, f)
 
     @beg.error
+    #Error handler for cooldown
     async def beg_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
             msg = 'Woah, slow down! please try again in {:.2f}s'.format(error.retry_after)
             await ctx.send(msg)
         else:
             raise error
+
+    @commands.command()
+    @commands.cooldown(1, 10, commands.BucketType.user)
+    async def slots(self, ctx):
+
+        open_account(ctx.author)
+
+        user = ctx.author
+        users = get_bank_data()
+
+        emojis = [':apple:', ':banana:', ':strawberry:', ':cherries:', ':green_apple:', ':peach:', ':tangerine:']
+
+        embed = discord.Embed(title=":money_mouth: Slot Machine :money_mouth:",description="React to the message to insert £100", color=0xFFB6C1)
+        embed.set_footer(text="Bot made by @Enmatt#8829.")
+        react = await ctx.channel.send(embed=embed)
+
+        await react.add_reaction(u'✅')
+
+        def check(reaction, user):
+            return user == ctx.author and str(reaction.emoji) in ['✅']
+
+        await self.bot.wait_for('reaction_add', check=check)
+
+        users[str(user.id)]["bank"] += -100
+
+        i = 0
+
+        while i <= 5:
+            f1 = random.choice(emojis)
+            f2 = random.choice(emojis)
+            f3 = random.choice(emojis)
+
+            embed = discord.Embed(title=":money_mouth: Slot Machine :money_mouth:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.add_field(name="Processing...", value="`¯\_(ツ)_/¯`", inline=False)
+            await react.edit(embed=embed)
+            time.sleep(0.5)
+            i = i + 1
+
+        if f1 == f2 == f3:
+            embed = discord.Embed(title=":moneybag: Slot Machine :moneybag:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
+            embed.add_field(name="You WIN!!", value="`£10,000`", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await react.edit(embed=embed)
+            users[str(user.id)]["bank"] += 10000
+        elif f1 == f2 or f1 == f3 or f2 == f3:
+            embed = discord.Embed(title=":dollar: Slot Machine :dollar:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
+            embed.add_field(name="You Win!", value="`£1,000`", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await react.edit(embed=embed)
+            users[str(user.id)]["bank"] += 1000
+        else:
+            embed = discord.Embed(title=":sob: Slot Machine :sob:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
+            embed.add_field(name="You Lose!", value="`:(`", inline=False)
+            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            await react.edit(embed=embed)
+
+        with open("bank.json", "w") as f:
+            users = json.dump(users, f)
+
+
+
+
+
 
 def open_account(user):
     users = get_bank_data()
