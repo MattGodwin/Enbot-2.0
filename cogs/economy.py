@@ -163,6 +163,50 @@ class Economy(commands.Cog):
         else:
             await ctx.send("HAHA, TOO POOR LOL")
 
+    @commands.command()
+    async def bet(self, ctx, amount):
+
+        amount = int(amount)
+
+        open_account(ctx.author)
+
+        user = ctx.author
+        users = get_bank_data()
+        bal = users[str(user.id)]["bank"]
+        if bal >= amount:
+
+            users[str(user.id)]["bank"] += -amount
+
+            if random.randint(1,5) == 1:
+
+                embed = discord.Embed(title=f"You bet £{amount}!", description="",color=0xFFB6C1)
+                embed.add_field(name="You WIN!!", value=f"`£{amount*2}`", inline=False)
+                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                await ctx.send(embed=embed)
+
+                users[str(user.id)]["bank"] += amount*2
+
+            else:
+                embed = discord.Embed(title=f"You bet £{amount}!", description="",color=0xFFB6C1)
+                embed.add_field(name="You Lose..", value=f"`:(`", inline=False)
+                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                await ctx.send(embed=embed)
+
+            with open("bank.json", "w") as f:
+                users = json.dump(users, f)
+
+        else:
+            await ctx.send("HAHA, TOO POOR LOL")
+
+    @bet.error
+    #Error handler for no ammount
+    async def beg_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            msg = 'Please make sure to specify an amount. For example: `.bet 500`'
+            await ctx.send(msg)
+        else:
+            raise error
+
 
 
 
