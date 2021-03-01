@@ -239,6 +239,14 @@ class Economy(commands.Cog):
         else:
             await ctx.send("HAHA, TOO POOR LOL")
 
+    @pay.error
+    #Error handler for no ammount
+    async def pay_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            msg = 'Please make sure to specify a user and an amount. For example: `.pay @Enmatt 100`'
+            await ctx.send(msg)
+        else:
+            raise error
 
 
 
