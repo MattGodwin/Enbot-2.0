@@ -1,7 +1,6 @@
 from discord.ext import commands
 import discord
 
-
 class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -23,6 +22,7 @@ class Help(commands.Cog):
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
             embed.add_field(name=".help", value="Shows a list of my commands.", inline=False)
             embed.add_field(name=".ping", value="Checks if I am responding", inline=False)
+            embed.add_field(name=".suggest <suggestion>", value="Sends a suggestion to the suggestions channel.", inline=False)
             embed.set_footer(text="Bot made by @Enmatt#8829.")
             await ctx.channel.send(embed=embed)
         elif arg == "fun":
@@ -58,6 +58,28 @@ class Ping(commands.Cog):
         await ctx.channel.send(embed=embed)
 
 
+class Suggestions(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def suggest(self, ctx, *, suggestion):
+
+        await ctx.send("Suggestion Sent!")
+
+        channel = self.bot.get_channel(817438536735260682)
+        user = ctx.author
+
+        embed = discord.Embed(title=f'Suggestion', color =0xFFB6C1)
+        embed.add_field(name=f'{user}', value=f'{suggestion}', inline=False)
+        embed.set_footer(text="Bot made by @Enmatt#8829.")
+        react = await channel.send(embed=embed)
+
+        await react.add_reaction(u'⬆')
+        await react.add_reaction(u'⬇')
+
+
 def setup(bot):
     bot.add_cog(Help(bot))
     bot.add_cog(Ping(bot))
+    bot.add_cog(Suggestions(bot))
