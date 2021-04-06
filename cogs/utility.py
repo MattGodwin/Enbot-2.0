@@ -54,7 +54,7 @@ class Ping(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         embed = discord.Embed(title='Pong! :ping_pong: {0}ms'.format(round(self.bot.latency * 1000, )), color=0xFFB6C1)
-        embed.set_footer(text="Bot made by @Enmatt#8829.")
+        embed.set_footer(text="Bot made by @Enmatt#5802.")
         await ctx.channel.send(embed=embed)
 
 
@@ -72,7 +72,7 @@ class Suggestions(commands.Cog):
 
         embed = discord.Embed(title=f'Suggestion', color =0xFFB6C1)
         embed.add_field(name=f'{user}', value=f'{suggestion}', inline=False)
-        embed.set_footer(text="Bot made by @Enmatt#8829.")
+        embed.set_footer(text="Bot made by @Enmatt#5802.")
         react = await channel.send(embed=embed)
 
         await react.add_reaction(u'⬆')

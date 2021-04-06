@@ -23,7 +23,7 @@ class Economy(commands.Cog):
 
         em = discord.Embed(title=f"{ctx.author.name}'s balance", color=0xFFB6C1)
         em.add_field(name="Wallet Balance", value=f"`£{wallet_amt}`")
-        em.set_footer(text="Bot made by @Enmatt#8829.")
+        em.set_footer(text="Bot made by @Enmatt#5802.")
         await ctx.send(embed=em)
 
     @commands.command(aliases=["balancetop"])
@@ -60,7 +60,7 @@ class Economy(commands.Cog):
                 i += 1
 
         #Sends Embed
-        em.set_footer(text="Bot made by @Enmatt#8829.")
+        em.set_footer(text="Bot made by @Enmatt#5802.")
         await ctx.send(embed = em)
 
     @commands.command()
@@ -113,7 +113,7 @@ class Economy(commands.Cog):
             emojis = [':apple:', ':banana:', ':strawberry:', ':cherries:', ':green_apple:', ':peach:', ':tangerine:']
 
             embed = discord.Embed(title=":money_mouth: Slot Machine :money_mouth:",description="React to the message to insert £100", color=0xFFB6C1)
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             react = await ctx.channel.send(embed=embed)
 
             await react.add_reaction(u'✅')
@@ -142,19 +142,19 @@ class Economy(commands.Cog):
             if f1 == f2 == f3:
                 embed = discord.Embed(title=":moneybag: Slot Machine :moneybag:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
                 embed.add_field(name="You WIN!!", value="`£10,000`", inline=False)
-                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                embed.set_footer(text="Bot made by @Enmatt#5802.")
                 await react.edit(embed=embed)
                 users[str(user.id)]["bank"] += 10000
             elif f1 == f2 or f1 == f3 or f2 == f3:
                 embed = discord.Embed(title=":dollar: Slot Machine :dollar:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
                 embed.add_field(name="You Win!", value="`£1,000`", inline=False)
-                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                embed.set_footer(text="Bot made by @Enmatt#5802.")
                 await react.edit(embed=embed)
                 users[str(user.id)]["bank"] += 1000
             else:
                 embed = discord.Embed(title=":sob: Slot Machine :sob:", description=f"{f1}{f2}{f3}",color=0xFFB6C1)
                 embed.add_field(name="You Lose!", value="`:(`", inline=False)
-                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                embed.set_footer(text="Bot made by @Enmatt#5802.")
                 await react.edit(embed=embed)
 
             with open("bank.json", "w") as f:
@@ -181,7 +181,7 @@ class Economy(commands.Cog):
 
                 embed = discord.Embed(title=f"You bet £{amount}!", description="",color=0xFFB6C1)
                 embed.add_field(name="You WIN!!", value=f"`£{amount*2}`", inline=False)
-                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                embed.set_footer(text="Bot made by @Enmatt#5802.")
                 await ctx.send(embed=embed)
 
                 users[str(user.id)]["bank"] += amount*2
@@ -189,7 +189,7 @@ class Economy(commands.Cog):
             else:
                 embed = discord.Embed(title=f"You bet £{amount}!", description="",color=0xFFB6C1)
                 embed.add_field(name="You Lose..", value=f"`:(`", inline=False)
-                embed.set_footer(text="Bot made by @Enmatt#8829.")
+                embed.set_footer(text="Bot made by @Enmatt#5802.")
                 await ctx.send(embed=embed)
 
             with open("bank.json", "w") as f:
@@ -213,6 +213,7 @@ class Economy(commands.Cog):
         amount = int(amount)
 
         open_account(ctx.author)
+        open_account(payee)
 
         payee = payee.replace("<", "")
         payee = payee.replace(">", "")
@@ -230,7 +231,7 @@ class Economy(commands.Cog):
 
             embed = discord.Embed(title=f"You payed @{await self.bot.fetch_user(payee)}", description="", color=0xFFB6C1)
             embed.add_field(name=f"Amount:", value=f"`£{amount}`!", inline=False)
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             await ctx.send(embed=embed)
 
             with open("bank.json", "w") as f:

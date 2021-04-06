@@ -17,7 +17,7 @@ class RPS(commands.Cog):
         embed = discord.Embed(title="Rock, Paper or Scissors?",
                               description="React with your choice. :rock: :roll_of_paper: :scissors:", color=0xFFB6C1)
         embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/754388247815258153.png?v=1")
-        embed.set_footer(text="Bot made by @Enmatt#8829.")
+        embed.set_footer(text="Bot made by @Enmatt#5802.")
         lol = await ctx.channel.send(embed=embed)
 
         for em in rps:
@@ -34,31 +34,31 @@ class RPS(commands.Cog):
             embed = discord.Embed(title="You Drew! :laughing:", description="We both chose " + reaction + "!",
                                   color=0xFFB6C1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/662101731009757222.png?v=1")
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             await lol.edit(embed=embed)
 
         elif reaction == rock and compReaction == paper:
             embed = discord.Embed(title="You lost! :cry:", description="I chose  🧻!", color=0xFFB6C1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/662101731009757222.png?v=1")
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             await lol.edit(embed=embed)
 
         elif reaction == scissors and compReaction == rock:
             embed = discord.Embed(title="You lost! :cry:", description="I chose  🪨!", color=0xFFB6C1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/662101731009757222.png?v=1")
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             await lol.edit(embed=embed)
 
         elif reaction == paper and compReaction == scissors:
             embed = discord.Embed(title="You lost! :cry:", description="I chose  ✂!", color=0xFFB6C1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/662101731009757222.png?v=1")
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             await lol.edit(embed=embed)
 
         else:
             embed = discord.Embed(title="You Won! :smile:", description="I chose" + compReaction + "!", color=0xFFB6C1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/662101731009757222.png?v=1")
-            embed.set_footer(text="Bot made by @Enmatt#8829.")
+            embed.set_footer(text="Bot made by @Enmatt#5802.")
             await lol.edit(embed=embed)
 
 
